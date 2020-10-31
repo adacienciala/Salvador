@@ -1,2 +1,11 @@
 #PyCharm project settings
 .idea
+
+#Python cache Byte-compiled
+__pycache__/
+
+#Exec used for web-scrapping
+chromedriver
+
+#MacOS litter
+.DS_Store
