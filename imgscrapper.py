@@ -19,7 +19,7 @@ def __keep_image(folder: str, url: str):
         image = Image.open(image_file).convert('RGB')
         file_path = os.path.join(folder, hashlib.sha1(image_content).hexdigest()[:10] + '.jpg')
         with open(file_path, 'wb') as f:
-            image.save(f, "JPEG", quality=85)
+            image.save(f, "JPEG", quality=95, subsampling=0)
         print(f"SUCCESS - saved {url} - as {file_path}")
     except Exception as e:
         print(f"ERROR - Could not save {url} - {e}")
