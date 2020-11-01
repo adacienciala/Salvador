@@ -17,9 +17,9 @@ def __keep_image(folder: str, url: str):
     try:
         image_file = io.BytesIO(image_content)
         image = Image.open(image_file).convert('RGB')
-        file_path = os.path.join(folder, hashlib.sha1(image_content).hexdigest()[:10] + '.jpg')
+        file_path = os.path.join(folder, hashlib.sha1(image_content).hexdigest()[:10] + '.pdf')
         with open(file_path, 'wb') as f:
-            image.save(f, "JPEG", quality=95, subsampling=0)
+            image.save(f, "PDF")
         print(f"SUCCESS - saved {url} - as {file_path}")
     except Exception as e:
         print(f"ERROR - Could not save {url} - {e}")
