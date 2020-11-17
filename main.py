@@ -1,3 +1,4 @@
-import imgscrapper
+import imgscrapper as imgs
 
-imgscrapper.google_and_download('dog', '/Users/tinyrogue/PycharmProjects/Salvador/chromedriver', number_images=4)
+webdriver_path = '/Users/tinyrogue/PycharmProjects/Salvador/chromedriver'
+imgs.create_mini_database(webdriver_path)
