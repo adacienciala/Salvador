@@ -9,3 +9,12 @@ chromedriver
 
 #MacOS litter
 .DS_Store
+
+#Images and models folders
+models/*
+plots/*
+images/*
+cifar10/*
+
+#Python virtual enviorement
+venv/*
