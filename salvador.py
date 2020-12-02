@@ -1,4 +1,4 @@
-from numpy import zeros, ones
+from numpy import zeros, ones, uint8
 from numpy.random import randn, randint
 from keras.optimizers import Adam
 from keras.models import Sequential
@@ -118,7 +118,7 @@ def summarize_performance(epoch, g_model, d_model, dataset, latent_dim, n_sample
     _, acc_fake = d_model.evaluate(x_fake, y_fake, verbose=0)
     print('>Accuracy real: %.0f%%, fake: %.0f%%' % (acc_real * 100, acc_fake * 100))
     filename = 'generator_model_%03d.h5' % epoch
-    g_model.save(f'models/{filename}')
+    # g_model.save(f'models/{filename}')
 
 
 def train(d_loss_real_hist, d_loss_fake_hist, g_loss_hist, g_model, d_model, gan_model, dataset, latent_dim, n_epochs=200, n_batch=128):
@@ -154,6 +154,14 @@ def create_gif(filename):
             writer.append_data(image)
 
 
+def generate_images(n_images=20):
+    for i in range(0, n_images):
+        x_fake, _ = generate_fake_samples(g_model, latent_dim, 1)
+        x_fake = ((x_fake[0] + 1) / 2.0)*255
+        im = Image.fromarray(x_fake.astype(uint8))
+        im.save(f'examples/img{i}.png')
+
+
 def remove_plots():
     for file in glob('plots/*'):
         remove(file)
@@ -162,6 +170,12 @@ def remove_plots():
 def remove_models():
     for file in glob('models/*'):
         remove(file)
+
+
+def remove_examples():
+    for file in glob('examples/*'):
+        remove(file)
+
 
 def plot_history(d1_hist, d2_hist, g_hist):
   # plot loss
