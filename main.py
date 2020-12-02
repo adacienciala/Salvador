@@ -25,9 +25,11 @@ print('Dataset loaded')
 print('Training model...')
 n_batch_cifar = 128
 n_batch_for_real = 10
-train(g_model, d_model, gan_model, dataset, latent_dim, n_epochs=200, n_batch=n_batch_cifar)
+d_loss_real_hist, d_loss_fake_hist, g_loss_hist = list(), list(), list()
+train(d_loss_real_hist, d_loss_fake_hist, g_loss_hist, g_model, d_model, gan_model, dataset, latent_dim, n_epochs=500, n_batch=n_batch_for_real)
+plot_history(d_loss_real_hist, d_loss_fake_hist, g_loss_hist)
 print('Model trained')
 
-create_gif('cifar10')
+create_gif('landscapes')
 #remove_plots()
 #remove_models()

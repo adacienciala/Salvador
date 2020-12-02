@@ -118,7 +118,7 @@ def summarize_performance(epoch, g_model, d_model, dataset, latent_dim, n_sample
     g_model.save(f'models/{filename}')
 
 
-def train(g_model, d_model, gan_model, dataset, latent_dim, n_epochs=200, n_batch=128):
+def train(d_loss_real_hist, d_loss_fake_hist, g_loss_hist, g_model, d_model, gan_model, dataset, latent_dim, n_epochs=200, n_batch=128):
     batch_per_epoch = int(dataset.shape[0] / n_batch)
     half_batch = int(n_batch / 2)
     for i in range(n_epochs):
@@ -130,6 +130,9 @@ def train(g_model, d_model, gan_model, dataset, latent_dim, n_epochs=200, n_batc
             x_gan = generate_latent_points(latent_dim, n_batch)
             y_gan = ones((n_batch, 1))
             g_loss = gan_model.train_on_batch(x_gan, y_gan)
+            d_loss_real_hist.append(d_loss1)
+            d_loss_fake_hist.append(d_loss2)
+            g_loss_hist.append(g_loss)
             print('>%d, %d/%d, d1=%.3f, d2=%.3f g=%.3f' %
                   (i + 1, j + 1, batch_per_epoch, d_loss1, d_loss2, g_loss))
         if (i + 1) % 10 == 0:
@@ -156,3 +159,14 @@ def remove_plots():
 def remove_models():
     for file in glob('models/*'):
         remove(file)
+
+def plot_history(d1_hist, d2_hist, g_hist):
+  # plot loss
+  fig = pyplot.figure(figsize=(80, 8))
+  pyplot.subplot(1, 1, 1)
+  pyplot.plot(d1_hist, label='d-real')
+  pyplot.plot(d2_hist, label='d-fake')
+  pyplot.plot(g_hist, label='gen')
+  pyplot.legend()
+  pyplot.savefig('plot_loss.png')
+  pyplot.close()
