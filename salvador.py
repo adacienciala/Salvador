@@ -12,7 +12,7 @@ import imageio
 from os import remove
 
 
-def define_discriminator(in_shape=(32, 32, 3)):
+def define_discriminator(in_shape=(128, 128, 3)):
     model = Sequential()
     model.add(Conv2D(64, (3, 3), padding='same', input_shape=in_shape))
     model.add(LeakyReLU(alpha=0.2))
@@ -32,10 +32,10 @@ def define_discriminator(in_shape=(32, 32, 3)):
 
 def define_generator(latent_dim):
     model = Sequential()
-    n_nodes = 256 * 4 * 4
+    n_nodes = 256 * 16 * 16
     model.add(Dense(n_nodes, input_dim=latent_dim))
     model.add(LeakyReLU(alpha=0.2))
-    model.add(Reshape((4, 4, 256)))
+    model.add(Reshape((16, 16, 256)))
     model.add(Conv2DTranspose(128, (4, 4), strides=(2, 2), padding='same'))
     model.add(LeakyReLU(alpha=0.2))
     model.add(Conv2DTranspose(128, (4, 4), strides=(2, 2), padding='same'))
@@ -57,11 +57,14 @@ def define_gan(g_model, d_model):
 
 
 def to_load():
-    file_list = glob("images/square_sunsets/*")
+    file_list = glob("/content/drive/MyDrive/images/landscapes/*")
     temp = []
+    i = 0
     for file in file_list:
-        img = Image.open(file).resize((32, 32))
+        img = Image.open(file).resize((128, 128))
         temp.append(asarray(img))
+        print(f"loaded {i}/{len(file_list)}: {file}")
+        i = i + 1
     x = array(temp)
     return x
 
