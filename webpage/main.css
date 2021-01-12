@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@font-face {
+    font-family: "Poor Richard";
+    src: url("//db.onlinewebfonts.com/t/1646cde4cb82668c6d24c9f33e67e4ea.eot");
+    src: url("//db.onlinewebfonts.com/t/1646cde4cb82668c6d24c9f33e67e4ea.eot?#iefix") format("embedded-opentype"),
+        url("//db.onlinewebfonts.com/t/1646cde4cb82668c6d24c9f33e67e4ea.woff2") format("woff2"),
+        url("//db.onlinewebfonts.com/t/1646cde4cb82668c6d24c9f33e67e4ea.woff") format("woff"),
+        url("//db.onlinewebfonts.com/t/1646cde4cb82668c6d24c9f33e67e4ea.ttf") format("truetype"),
+        url("//db.onlinewebfonts.com/t/1646cde4cb82668c6d24c9f33e67e4ea.svg#Poor Richard") format("svg");
+}
+
+* {
+      line-height: 1.2;
+      margin: 0;
+    }
+
+html {
+  color: #888;
+  display: table;
+  font-family: sans-serif;
+  height: 100%;
+  text-align: center;
+  width: 100%;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+    margin: 2em auto;
+    background: linear-gradient(180deg, #000B32 0%, #003952 100%);
+}
+
+h1 {
+    color: #555;
+    font-size: 6em;
+    font-weight: 400;
+    font-family: "Poor Richard", sans-serif;
+}
+
+p {
+    margin: 0 auto;
+    width: 280px;
+    font-family: Poppins, sans-serif;
+}
+
+@media only screen and (max-width: 280px) {
+
+    body,
+    p {
+        width: 95%;
+    }
+
+    h1 {
+     font-size: 1.5em;
+     margin: 0 0 0.3em;
+    }
+}
