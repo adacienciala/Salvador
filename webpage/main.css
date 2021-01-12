@@ -31,6 +31,12 @@ body {
     background: linear-gradient(180deg, #000B32 0%, #003952 100%);
 }
 
+#logo {
+    width: 25%;
+    min-width: 200px;
+    height: auto;
+}
+
 h1 {
     color: #555;
     font-size: 6em;
