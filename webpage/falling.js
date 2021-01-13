@@ -1,8 +1,3 @@
-/*!
-// Snow.js - v0.0.3
-// kurisubrooks.com
-*/
-
 // Amount of Snowflakes
 var snowMax = 35;
 
@@ -26,12 +21,6 @@ var snowRefresh = 50;
 
 // Additional Styles
 var snowStyles = "cursor: default; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none;";
-
-/*
-// End of Configuration
-// ----------------------------------------
-// Do not modify the code below this line
-*/
 
 var snow = [],
 	pos = [],

@@ -16,12 +16,12 @@
     }
 
 html {
-  color: #888;
-  display: table;
-  font-family: sans-serif;
-  height: 100%;
-  text-align: center;
-  width: 100%;
+    color: #888;
+    display: table;
+    font-family: sans-serif;
+    height: 100%;
+    text-align: center;
+    width: 100%;
 }
 
 body {
@@ -60,17 +60,17 @@ p {
   }
   
 .tech-slideshow > div {
-height: 200px;
-width: 100%;
-background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/collage.jpg);
-position: absolute;
-top: 0;
-left: 0;
-height: 100%;
-transform: translate3d(0, 0, 0);
+    height: 200px;
+    width: 400%;
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/collage.jpg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: translate3d(0, 0, 0);
 }
 .tech-slideshow .mover-1 {
-animation: moveSlideshow 12s linear infinite;
+    animation: moveSlideshow 50s linear infinite;
 }
 
 #tech-slideshow {
@@ -78,9 +78,9 @@ animation: moveSlideshow 12s linear infinite;
 }
 
 @keyframes moveSlideshow {
-100% { 
-    transform: translateX(-66.6666%);  
-}
+    100% { 
+        transform: translateX(-66.6666%);  
+    }
 }
 
 @media only screen and (max-width: 280px) {
