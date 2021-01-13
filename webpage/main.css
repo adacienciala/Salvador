@@ -37,21 +37,8 @@ body {
     height: auto;
 }
 
-h1 {
-    color: #555;
-    font-size: 6em;
-    font-weight: 400;
-    font-family: "Poor Richard", sans-serif;
-}
-
-p {
-    margin: 0 auto;
-    width: 280px;
-    font-family: Poppins, sans-serif;
-}
-
 .tech-slideshow {
-    height: 200px;
+    height: 180px;
     max-width: 100%;
     margin: 0 auto;
     position: relative;
@@ -62,13 +49,14 @@ p {
 .tech-slideshow > div {
     height: 200px;
     width: 400%;
-    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/collage.jpg);
+    background: url('gallery.png');
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     transform: translate3d(0, 0, 0);
 }
+
 .tech-slideshow .mover-1 {
     animation: moveSlideshow 50s linear infinite;
 }
