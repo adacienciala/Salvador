@@ -8,13 +8,13 @@ $(document).ready(function(){
     // TODO: slider dlugiej szerokosci i na koncu powtorzenie pierwszych
 
     var dir = "images/generated_images/";
-    var link = "https://github.com/adacienciala/Salvador/tree/main/webpage/images/generated_images";
+    var link = "https://github.com/adacienciala/Salvador/tree/main/webpage/images/generated_images/";
     var pageBase = "https://adacienciala.github.io/Salvador/webpage/"
     var fileextension = ".png";
     var imgSize = 128; // px
     $.ajax({
         //This will retrieve the contents of the folder if the folder is configured as 'browsable'
-        url: dir,
+        url: link,
         success: function (data) {
             var maxEl = $(window).width() / imgSize;
             console.log(maxEl);
