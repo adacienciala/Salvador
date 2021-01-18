@@ -5,7 +5,11 @@ $(document).ready(function(){
         $('.tech-slideshow').show('slow');
     });
 
+    // TODO: slider dlugiej szerokosci i na koncu powtorzenie pierwszych
+
     var dir = "images/generated_images/";
+    var link = "https://github.com/adacienciala/Salvador/tree/main/webpage/images/generated_images";
+    var pageBase = "https://adacienciala.github.io/Salvador/webpage/"
     var fileextension = ".png";
     var imgSize = 128; // px
     $.ajax({
@@ -20,9 +24,9 @@ $(document).ready(function(){
             $(data).find("a:contains(" + fileextension + ")").each(function (i) {
                 var filename = this.href.replace(window.location.host, "").replace("http://", "");
                 if (i < maxEl-2) {
-                    $moverL.append("<img src='" + dir + filename + "'>");
+                    $moverL.append("<img src='" + pageBase + dir + filename + "'>");
                 } else if (i < 2*maxEl-3) {
-                    $moverR.append("<img src='" + dir + filename + "'>");
+                    $moverR.append("<img src='" + pageBase + dir + filename + "'>");
                 } else {
                     return false;
                 }

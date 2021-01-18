@@ -56,13 +56,13 @@ p {
 
 .tech-slideshow .mover {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     height: auto;
     width: 100%;
 }
 
 #mover-left {
-    background-color: red; /* debug */
+    background-color: red; /* debug */  
     animation: moveSlideshowLeft 4s linear infinite;
 }
 
@@ -74,7 +74,7 @@ p {
 
 @keyframes moveSlideshowLeft {
     100% { 
-        transform: translateX(-66.6666%);  
+        transform: translateX(calc(-128px * 7))
     }
 }
 
