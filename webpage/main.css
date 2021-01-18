@@ -57,30 +57,31 @@ p {
 .tech-slideshow .mover {
     display: flex;
     justify-content: center;
+    column-gap: 10px;
     height: auto;
-    width: 100%;
+}
+
+.tech-slideshow img {
+    box-shadow: 0 4px 6px #000;
 }
 
 #mover-left {
-    background-color: red; /* debug */  
-    animation: moveSlideshowLeft 4s linear infinite;
+    animation: moveSlideshowLeft 1000ms linear infinite;
 }
 
 #mover-right {
-    background-color: green; /* debug */
-    animation: moveSlideshowRight 4s linear infinite;
+    animation: moveSlideshowRight 1000ms linear infinite;
 }
-
 
 @keyframes moveSlideshowLeft {
     100% { 
-        transform: translateX(calc(-128px * 7))
+        transform: translateX(-138px);
     }
 }
 
 @keyframes moveSlideshowRight {
     100% { 
-        transform: translateX(66.6666%);  
+        transform: translateX(138px);
     }
 }
 

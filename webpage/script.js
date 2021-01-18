@@ -8,30 +8,59 @@ $(document).ready(function(){
     // TODO: slider dlugiej szerokosci i na koncu powtorzenie pierwszych
 
     var dir = "images/generated_images/";
-    var link = "https://github.com/adacienciala/Salvador/tree/main/webpage/images/generated_images/";
-    var pageBase = "https://adacienciala.github.io/Salvador/webpage/"
     var fileextension = ".png";
-    var imgSize = 128; // px
+    $moverL = $('#mover-left');
+    $moverR = $('#mover-right');
     $.ajax({
         //This will retrieve the contents of the folder if the folder is configured as 'browsable'
-        url: link,
+        url: dir,
         success: function (data) {
-            var maxEl = $(window).width() / imgSize;
-            console.log(maxEl);
-            $moverL = $('#mover-left');
-            $moverR = $('#mover-right');
             //List all .png file names in the page
-            $(data).find("a:contains(" + fileextension + ")").each(function (i) {
+            var images = $(data).find("a:contains(" + fileextension + ")");
+            // document.querySelector('head').innerHTML += `<style>@keyframes moveSlideshowLeft {
+            //     100% { 
+            //         transform: translateX(calc(-128px * ${images.length/2}))
+            //     }
+            //   }</style>`;
+            images.each(function (i) {
                 var filename = this.href.replace(window.location.host, "").replace("http://", "");
-                if (i < maxEl-2) {
-                    $moverL.append("<img src='" + pageBase + dir + filename + "'>");
-                } else if (i < 2*maxEl-3) {
-                    $moverR.append("<img src='" + pageBase + dir + filename + "'>");
+                if (i < images.length/2) {
+                    $moverL.append("<img src='" + dir + filename + "'>");
+                } else if (i < images.length) {
+                    $moverR.append("<img src='" + dir + filename + "'>");
                 } else {
                     return false;
                 }
-                console.log(i, maxEl);
             });
         }
     });
+
+    // function wrap() {
+    //     setTimeout(function() {
+    //         var overflowedImg = $moverL.children(":first");
+    //         overflowedImg.appendTo($moverL);
+    //         setTimeout(function() {
+    //             wrap();
+    //         }, 200);
+    //     }, 800);
+    // }
+
+    // wrap();
+
+    $moverL.on('animationiteration', function (e) {
+        var overflowedImg = $moverL.children(":first");
+        overflowedImg.appendTo($moverL);
+    })
+
+    $moverR.on('animationiteration', function (e) {
+        var overflowedImg = $moverR.children(":last");
+        overflowedImg.prependTo($moverR);
+    })
+
+    // setInterval(function() {
+    //     var overflowedImg = $moverL.children(":first");
+    //     overflowedImg.remove();
+    //     overflowedImg.appendTo($moverL);
+    //     console.log("moved");
+    // }, 2000);
 });
