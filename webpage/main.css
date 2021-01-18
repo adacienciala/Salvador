@@ -11,65 +11,80 @@
 }
 
 * {
-      line-height: 1.2;
-      margin: 0;
-    }
+    line-height: 1.2;
+    margin: 0;
+}
 
 html {
     color: #888;
-    display: table;
     font-family: sans-serif;
     height: 100%;
-    text-align: center;
     width: 100%;
 }
 
 body {
-    display: table-cell;
-    vertical-align: middle;
-    margin: 2em auto;
+    height: 100%;
+    position: relative;
     background: linear-gradient(180deg, #000B32 0%, #003952 100%);
 }
 
-#logo {
-    width: 25%;
+p {
+    text-align: center;
+}
+
+#logodiv {
     min-width: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
     height: auto;
+    transform: translate(-50%, -50%);
 }
 
 .tech-slideshow {
-    height: 180px;
-    max-width: 100%;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-    transform: translate3d(0, 0, 0);
-  }
-  
-.tech-slideshow > div {
-    height: 200px;
-    width: 400%;
-    background: url('gallery.png');
     position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    transform: translate3d(0, 0, 0);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 500px;
+    width: 100%;
+    overflow: hidden;
 }
 
-.tech-slideshow .mover-1 {
-    animation: moveSlideshow 50s linear infinite;
+.tech-slideshow .mover {
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    width: 100%;
 }
 
-#tech-slideshow {
-    display: none;
+#mover-left {
+    background-color: red; /* debug */
+    animation: moveSlideshowLeft 4s linear infinite;
 }
 
-@keyframes moveSlideshow {
+#mover-right {
+    background-color: green; /* debug */
+    animation: moveSlideshowRight 4s linear infinite;
+}
+
+
+@keyframes moveSlideshowLeft {
     100% { 
         transform: translateX(-66.6666%);  
     }
 }
+
+@keyframes moveSlideshowRight {
+    100% { 
+        transform: translateX(66.6666%);  
+    }
+}
+
+/* TODO make the #logodiv scalable */
 
 @media only screen and (max-width: 280px) {
 
