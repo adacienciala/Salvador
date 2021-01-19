@@ -1,6 +1,8 @@
 $(document).ready(function(){
     $('.tech-slideshow').hide();
     $('.generate-button').hide();
+    $('.image-editor').hide();
+    $('#image').hide();
     $('#logodiv').click(function(){
         $('#logodiv').fadeTo('slow', 0.3);
         $('.tech-slideshow').show('slow');
@@ -8,8 +10,16 @@ $(document).ready(function(){
     });
 
     $('#button, #button-icon').click(function(){
-        console.log("click");
+        $('.generate-button').fadeOut();
+        $('.generate-button').remove();
+        document.getElementById("image").src = "images/generated_images/img_349_71.png";
+        $('.image-editor').fadeIn();
+        
     });
+
+    $('.image-editor').on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function (e) {
+        $('#image').fadeIn();
+    })
 
     // TODO: slider dlugiej szerokosci i na koncu powtorzenie pierwszych
 

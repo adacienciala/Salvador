@@ -12,6 +12,7 @@
 
 :root {
     --speed: 3000ms;
+    --img-size: 128px;
 }
 
 * {
@@ -62,10 +63,12 @@ p {
     display: flex;
     justify-content: center;
     column-gap: 10px;
-    height: auto;
+    height: var(--img-size);
 }
 
 .tech-slideshow img {
+    height: var(--img-size);
+    width: var(--img-size);
     box-shadow: 0 4px 6px #000;
 }
 
@@ -85,50 +88,31 @@ p {
 
 @keyframes moveSlideshowLeft {
     100% { 
-        transform: translateX(-138px);
+        transform: translateX(calc((var(--img-size) + 10px) * -1));
     }
 }
 
 @keyframes moveSlideshowRight {
     100% { 
-        transform: translateX(138px);
+        transform: translateX(calc(var(--img-size) + 10px));
     }
 }
 
 #button {
-    width: 180px;
-    height: 125px;
+    background-image: url('images/btn.png');
+    width: 100%;
+    height: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 4px 1px 0px rgb(255, 177, 75); 
-}
-
-#button::before {
-    transform: rotate(60deg);
-    box-shadow: 4px 0 0px rgb(255, 177, 75); 
-}
-
-#button::after {
-    transform: rotate(-60deg);
-}
-
-#button::before, #button::after {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    content: "";
-}
-
-#button, #button::before, #button::after {
-    background-color: white;
-    border-radius: 25px;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 #button-icon {
-    width: 100px;
-    height: 100px;
+    width: 30%;
+    height: 30%;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -155,6 +139,46 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transition: all 1000ms;
+}
+
+.image-editor {
+    background-image: url('images/btn.png');
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: intoImage 3s;
+    animation-fill-mode: forwards;
+}
+
+.image-editor img {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 6px #000;
+}
+
+@keyframes intoImage {
+    0% {
+        width: 250px;
+        height: 250px;
+    }
+    50% { 
+        width: 100vh;
+        height: 100vh;
+    }
+    100% { 
+        width: 700px;
+        height: 700px;
+    }
 }
 
 /* TODO make the #logodiv scalable */
