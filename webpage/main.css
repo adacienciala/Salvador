@@ -10,6 +10,10 @@
         url("//db.onlinewebfonts.com/t/1646cde4cb82668c6d24c9f33e67e4ea.svg#Poor Richard") format("svg");
 }
 
+:root {
+    --speed: 3000ms;
+}
+
 * {
     line-height: 1.2;
     margin: 0;
@@ -66,11 +70,17 @@ p {
 }
 
 #mover-left {
-    animation: moveSlideshowLeft 1000ms linear infinite;
+    animation: moveSlideshowLeft var(--speed) linear infinite;
+    -webkit-animation: moveSlideshowLeft var(--speed) linear infinite;
+    -moz-animation: moveSlideshowLeft var(--speed) linear infinite;
+    -o-animation: moveSlideshowLeft var(--speed) linear infinite;
 }
 
 #mover-right {
-    animation: moveSlideshowRight 1000ms linear infinite;
+    animation: moveSlideshowRight var(--speed) linear infinite;
+    -webkit-animation: moveSlideshowRight var(--speed) linear infinite;
+    -moz-animation: moveSlideshowRight var(--speed) linear infinite;
+    -o-animation: moveSlideshowRight var(--speed) linear infinite;
 }
 
 @keyframes moveSlideshowLeft {
@@ -83,6 +93,68 @@ p {
     100% { 
         transform: translateX(138px);
     }
+}
+
+#button {
+    width: 180px;
+    height: 125px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 4px 1px 0px rgb(255, 177, 75); 
+}
+
+#button::before {
+    transform: rotate(60deg);
+    box-shadow: 4px 0 0px rgb(255, 177, 75); 
+}
+
+#button::after {
+    transform: rotate(-60deg);
+}
+
+#button::before, #button::after {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    content: "";
+}
+
+#button, #button::before, #button::after {
+    background-color: white;
+    border-radius: 25px;
+}
+
+#button-icon {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url(images/finger.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: all 500ms;
+}
+
+#button-icon:hover {
+    top: 52%;
+    filter: brightness(75%)
+}
+
+#button:hover, #button-icon:hover {
+    cursor: pointer;
+}
+
+.generate-button {
+    width: 250px;
+    height: 250px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* TODO make the #logodiv scalable */
