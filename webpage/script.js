@@ -2,7 +2,7 @@ $(document).ready(function(){
     $('.tech-slideshow').hide();
     $('.generate-button').hide();
     $('.image-editor').hide();
-    $('#image').hide();
+    // $('#image').hide();
     $('#logodiv').click(function(){
         $('#logodiv').fadeTo('slow', 0.3);
         $('.tech-slideshow').show('slow');
@@ -12,13 +12,23 @@ $(document).ready(function(){
     $('#button, #button-icon').click(function(){
         $('.generate-button').fadeOut();
         $('.generate-button').remove();
-        document.getElementById("image").src = "images/generated_images/img_349_71.png";
+        
         $('.image-editor').fadeIn();
         
     });
 
     $('.image-editor').on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function (e) {
-        $('#image').fadeIn();
+        var fileSrc = "images/generated_images/img_349_71.png";
+        var image = $("#image");
+        image.fadeOut('fast', function () {
+            image.attr('src', fileSrc);
+            image.css({
+                "box-shadow": "0 4px 6px #000",
+                "height": "50%",
+                "width": "50%"
+            });
+            image.fadeIn('fast');
+        });
     })
 
     // TODO: slider dlugiej szerokosci i na koncu powtorzenie pierwszych
