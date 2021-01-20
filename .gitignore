@@ -15,6 +15,7 @@ models/*
 plots/*
 images/*
 cifar10/*
+generated/*
 
 #Python virtual enviorement
 venv/*
