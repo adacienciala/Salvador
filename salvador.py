@@ -1,7 +1,7 @@
 from numpy import zeros, ones, uint8
 from numpy.random import randn, randint
 from keras.optimizers import Adam
-from keras.models import Sequential
+from keras.models import Sequential, load_model
 from keras.layers import Dense, Reshape, Flatten, Conv2D, Conv2DTranspose, LeakyReLU, Dropout
 from keras.datasets.cifar10 import load_data
 from matplotlib import pyplot
@@ -187,3 +187,11 @@ def plot_history(d1_hist, d2_hist, g_hist):
   pyplot.legend()
   pyplot.savefig('plot_loss.png')
   pyplot.close()
+
+
+def generate_from_model(model_path, dst_catalog='generated', latent_points=generate_latent_points(100, 100), n_images=1):
+    model = load_model(model_path)
+    for i in range(1, n_images):
+        image = model.predict(latent_points)
+        image = (image + 1) / 2.0
+        pyplot.imsave(f'{dst_catalog}/image%04d.png' % i, image[i, :, :])
