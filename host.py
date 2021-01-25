@@ -1,4 +1,5 @@
 import uuid
+import os
 
 from flask import Flask, send_from_directory
 from salvador import generate_from_model
@@ -6,7 +7,8 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-app.run(host='0.0.0.0')
+port = int(os.environ.get("PORT", 5000))
+app.run(host='0.0.0.0', port=port)
 
 
 @app.route('/generated/<user_id>/<path:filename>')

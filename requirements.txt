@@ -3,7 +3,6 @@ Flask-Cors
 Jinja2
 Keras
 Keras-Preprocessing
-MarkupSafe
 Pillow
 Werkzeug
 absl-py
@@ -39,8 +38,6 @@ six
 tensorboard
 tensorboard-plugin-wit
 tensorflow-cpu==2.3.0
-tensorflow-estimator
-termcolor
 urllib3
 wheel
 wrapt
