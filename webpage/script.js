@@ -43,10 +43,10 @@ $(document).ready(function(){
             fileList = JSON.parse(response)
         } catch (e) { console.log('Errorek', e)}
 
-        var images = fileList.forEach(function (filename, i) {
-            if (i < images.length/2) {
+        fileList.forEach(function (filename, i) {
+            if (i < fileList.length/2) {
                 $moverL.append("<img src='" + dir + filename + "'>");
-            } else if (i < images.length) {
+            } else if (i < fileList.length) {
                 $moverR.append("<img src='" + dir + filename + "'>");
             } else {
                 return false;
