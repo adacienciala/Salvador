@@ -17,7 +17,7 @@ google-auth
 google-auth-oauthlib
 google-pasta
 grpcio
-h5py
+h5py==2.10.0
 idna
 imageio
 itsdangerous
