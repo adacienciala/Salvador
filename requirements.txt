@@ -26,7 +26,6 @@ kiwisolver
 matplotlib
 numpy
 oauthlib
-opencv-python-headless
 opt-einsum
 protobuf
 pyasn1
@@ -39,7 +38,7 @@ setuptools
 six
 tensorboard
 tensorboard-plugin-wit
-tensorflow
+tensorflow-cpu==2.3.0
 tensorflow-estimator
 termcolor
 urllib3
