@@ -18,9 +18,10 @@ $(document).ready(function(){
     });
 
     $('.image-editor').on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function (e) {
-        var fileSrc = "images/generated_images/img_349_71.png";
-        var image = $("#image");
-        image.fadeOut('fast', function () {
+        $.get('http://0.0.0.0:5000/generate', function (response) {
+            let fileSrc = 'http://0.0.0.0:5000/generated/' + response + '/image0000.png';
+            let image = $("#image");
+            image.fadeOut('fast', function () {
             image.attr('src', fileSrc);
             image.css({
                 "box-shadow": "0 4px 6px #000",
@@ -28,7 +29,8 @@ $(document).ready(function(){
                 "width": "50%"
             });
             image.fadeIn('fast');
-        });
+            });
+        })
     })
 
     // TODO: slider dlugiej szerokosci i na koncu powtorzenie pierwszych
@@ -65,5 +67,6 @@ $(document).ready(function(){
         var overflowedImg = $moverR.children(":last");
         overflowedImg.prependTo($moverR);
     })
+
 
 });

@@ -1,4 +1,6 @@
-from numpy import zeros, ones, uint8
+import os
+
+from numpy import zeros, ones
 from numpy.random import randn, randint
 from keras.optimizers import Adam
 from keras.models import Sequential, load_model
@@ -118,10 +120,11 @@ def summarize_performance(epoch, g_model, d_model, dataset, latent_dim, n_sample
     _, acc_fake = d_model.evaluate(x_fake, y_fake, verbose=0)
     print('>Accuracy real: %.0f%%, fake: %.0f%%' % (acc_real * 100, acc_fake * 100))
     filename = 'generator_model_%03d.h5' % epoch
-    # g_model.save(f'models/{filename}')
+    g_model.save(f'models/{filename}')
 
 
-def train(d_loss_real_hist, d_loss_fake_hist, g_loss_hist, g_model, d_model, gan_model, dataset, latent_dim, n_epochs=200, n_batch=128):
+def train(d_loss_real_hist, d_loss_fake_hist, g_loss_hist, g_model, d_model, gan_model, dataset, latent_dim,
+          n_epochs=200, n_batch=128):
     batch_per_epoch = int(dataset.shape[0] / n_batch)
     half_batch = int(n_batch / 2)
     for i in range(n_epochs):
@@ -154,12 +157,12 @@ def create_gif(filename):
             writer.append_data(image)
 
 
-def generate_images(n_images=20):
-    for i in range(0, n_images):
-        x_fake, _ = generate_fake_samples(g_model, latent_dim, 1)
-        x_fake = ((x_fake[0] + 1) / 2.0)*255
-        im = Image.fromarray(x_fake.astype(uint8))
-        im.save(f'examples/img{i}.png')
+# def generate_images(n_images=20):
+#     for i in range(0, n_images):
+#         x_fake, _ = generate_fake_samples(g_model, latent_dim, 1)
+#         x_fake = ((x_fake[0] + 1) / 2.0) * 255
+#         im = Image.fromarray(x_fake.astype(uint8))
+#         im.save(f'examples/img{i}.png')
 
 
 def remove_plots():
@@ -178,20 +181,24 @@ def remove_examples():
 
 
 def plot_history(d1_hist, d2_hist, g_hist):
-  # plot loss
-  fig = pyplot.figure(figsize=(80, 8))
-  pyplot.subplot(1, 1, 1)
-  pyplot.plot(d1_hist, label='d-real')
-  pyplot.plot(d2_hist, label='d-fake')
-  pyplot.plot(g_hist, label='gen')
-  pyplot.legend()
-  pyplot.savefig('plot_loss.png')
-  pyplot.close()
+    # plot loss
+    pyplot.figure(figsize=(80, 8))
+    pyplot.subplot(1, 1, 1)
+    pyplot.plot(d1_hist, label='d-real')
+    pyplot.plot(d2_hist, label='d-fake')
+    pyplot.plot(g_hist, label='gen')
+    pyplot.legend()
+    pyplot.savefig('plot_loss.png')
+    pyplot.close()
 
 
-def generate_from_model(model_path, dst_catalog='generated', latent_points=generate_latent_points(100, 100), n_images=1):
+def generate_from_model(model_path, dst_catalog='generated', n_images=1):
+    print('Loading model...')
     model = load_model(model_path)
-    for i in range(1, n_images):
-        image = model.predict(latent_points)
-        image = (image + 1) / 2.0
+    print('Predicting...')
+    image = model.predict(generate_latent_points(100, 100))
+    image = (image + 1) / 2.0
+    os.mkdir(dst_catalog)
+    for i in range(0, n_images):
         pyplot.imsave(f'{dst_catalog}/image%04d.png' % i, image[i, :, :])
+        print(f'Saved {dst_catalog}/image%04d.png' % i)
