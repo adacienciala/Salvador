@@ -2,7 +2,6 @@ $(document).ready(function(){
     $('.tech-slideshow').hide();
     $('.generate-button').hide();
     $('.image-editor').hide();
-    // $('#image').hide();
     $('#logodiv').click(function(){
         $('#logodiv').fadeTo('slow', 0.3);
         $('.tech-slideshow').show('slow');

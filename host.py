@@ -11,6 +11,10 @@ port = int(os.environ.get("PORT", 5000))
 app.run(host='0.0.0.0', port=port)
 
 
+@app.route('/')
+def hello():
+    return 'hello world'
+
 @app.route('/generated/<user_id>/<path:filename>')
 def download_file(user_id, filename):
     return send_from_directory(f'{user_id}/', filename, as_attachment=True)
