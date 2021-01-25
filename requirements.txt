@@ -36,7 +36,7 @@ scipy
 setuptools
 tensorboard
 tensorboard-plugin-wit
-tensorflow-cpu==2.4.0
+tensorflow-cpu==2.3.0
 urllib3
 wheel
 wrapt

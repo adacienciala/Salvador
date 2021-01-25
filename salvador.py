@@ -194,7 +194,7 @@ def plot_history(d1_hist, d2_hist, g_hist):
 
 def generate_from_model(model_path, dst_catalog='generated', n_images=1):
     print('Loading model...')
-    model = load_model(model_path)
+    model = load_model(model_path, compile=False)
     print('Predicting...')
     image = model.predict(generate_latent_points(100, 100))
     image = (image + 1) / 2.0
