@@ -35,27 +35,24 @@ $(document).ready(function(){
     // TODO: slider dlugiej szerokosci i na koncu powtorzenie pierwszych
 
     var dir = "images/generated_images/";
-    var fileextension = ".png";
     $moverL = $('#mover-left');
     $moverR = $('#mover-right');
-    $.ajax({
-        //This will retrieve the contents of the folder if the folder is configured as 'browsable'
-        url: dir,
-        success: function (data) {
-            //List all .png file names in the page
-            var images = $(data).find("a:contains(" + fileextension + ")");
-            images.each(function (i) {
-                var filename = this.href.replace(window.location.host, "").replace("http://", "");
-                if (i < images.length/2) {
-                    $moverL.append("<img src='" + dir + filename + "'>");
-                } else if (i < images.length) {
-                    $moverR.append("<img src='" + dir + filename + "'>");
-                } else {
-                    return false;
-                }
-            });
-        }
-    });
+    $.get('https://pomodoro-salvadoro.herokuapp.com/slider_images', function (response) {
+        var fileList = []
+        try {
+            fileList = JSON.parse(response)
+        } catch (e) { console.log('Errorek', e)}
+
+        var images = fileList.forEach(function (filename, i) {
+            if (i < images.length/2) {
+                $moverL.append("<img src='" + dir + filename + "'>");
+            } else if (i < images.length) {
+                $moverR.append("<img src='" + dir + filename + "'>");
+            } else {
+                return false;
+            }
+        });
+    })
 
     $moverL.on('webkitAnimationIteration oanimationiteration msAnimationIteration animationiteration', function (e) {
         var overflowedImg = $moverL.children(":first");
