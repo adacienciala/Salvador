@@ -8,8 +8,6 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 port = int(os.environ.get("PORT", 5000))
-app.run(host='0.0.0.0', port=port)
-
 
 @app.route('/')
 def hello():
@@ -25,3 +23,5 @@ def generate_images():
     user_id = uuid.uuid4().hex
     generate_from_model('models/generator_model_009.h5', dst_catalog=user_id, n_images=1)
     return user_id
+
+app.run(host='0.0.0.0', port=port)
