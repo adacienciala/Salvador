@@ -17,8 +17,8 @@ $(document).ready(function(){
     });
 
     $('.image-editor').on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function (e) {
-        $.get('http://0.0.0.0:5000/generate', function (response) {
-            let fileSrc = 'http://0.0.0.0:5000/generated/' + response + '/image0000.png';
+        $.get('https://pomodoro-salvadoro.herokuapp.com/generate', function (response) {
+            let fileSrc = 'https://pomodoro-salvadoro.herokuapp.com/generated/' + response + '/image0000.png';
             let image = $("#image");
             image.fadeOut('fast', function () {
             image.attr('src', fileSrc);
