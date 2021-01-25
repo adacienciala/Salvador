@@ -1,4 +1,4 @@
-Flas
+Flask
 Flask-Cors
 Jinja2
 Keras
