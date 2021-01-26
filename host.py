@@ -1,7 +1,7 @@
 import uuid
 import os
 import json
-
+import gc
 
 from flask import Flask, send_from_directory
 from salvador import generate_from_model
@@ -19,16 +19,15 @@ def hello():
 def download_file(user_id, filename):
     return send_from_directory(f'{user_id}/', filename, as_attachment=True)
 
-
 @app.route('/generate')
 def generate_images():
     user_id = uuid.uuid4().hex
     generate_from_model('models/generator_model_299.h5', dst_catalog=user_id, n_images=1)
+    gc.collect()
     return user_id
 
 @app.route('/slider_images')
 def getImagesFilenames():
-    print(os.listdir('webpage/images/generated_images'))
     return json.dumps(os.listdir('webpage/images/generated_images'))
 
 app.run(host='0.0.0.0', port=port)
