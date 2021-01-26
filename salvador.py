@@ -59,7 +59,7 @@ def define_gan(g_model, d_model):
 
 
 def to_load():
-    file_list = glob("/content/drive/MyDrive/images/landscapes/*")
+    file_list = glob("images/horizontal_forests/*")
     temp = []
     i = 0
     for file in file_list:
@@ -72,7 +72,7 @@ def to_load():
 
 
 def load_from_path(catalog_path: str):
-    file_list = file_list = glob(catalog_path)
+    file_list = glob(catalog_path + '/*')
     temp = []
     i = 0
     for file in file_list:
@@ -81,6 +81,8 @@ def load_from_path(catalog_path: str):
         print(f"loaded {i}/{len(file_list)}: {file}")
         i = i + 1
     x = array(temp)
+    x = x.astype('float32')
+    x = (x - 127.5) / 127.5
     return x
 
 

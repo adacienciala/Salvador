@@ -4,7 +4,7 @@ from salvador import define_discriminator, define_gan, define_generator, load_re
 # webdriver_path = '/Users/tinyrogue/PycharmProjects/Salvador/chromedriver'
 
 # Path to database folder
-path = ""
+path = 'images/horizontal_forests'
 
 print('Starting ')
 latent_dim = 100
@@ -23,13 +23,14 @@ print('GAN defined')
 
 print('Loading dataset...')
 dataset = load_from_path(path)
+# dataset = load_real_samples(True)
 print('Dataset loaded')
 
 print('Training model...')
 n_batch_cifar = 64
-n_batch_for_real = 10
+n_batch_for_real = 64
 d_loss_real_hist, d_loss_fake_hist, g_loss_hist = list(), list(), list()
-train(d_loss_real_hist, d_loss_fake_hist, g_loss_hist, g_model, d_model, gan_model, dataset, latent_dim, n_epochs=11,
+train(d_loss_real_hist, d_loss_fake_hist, g_loss_hist, g_model, d_model, gan_model, dataset, latent_dim, n_epochs=31,
       n_batch=n_batch_for_real)
 
 # plot_history(d_loss_real_hist, d_loss_fake_hist, g_loss_hist)
