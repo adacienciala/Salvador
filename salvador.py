@@ -71,6 +71,19 @@ def to_load():
     return x
 
 
+def load_from_path(catalog_path: str):
+    file_list = file_list = glob(catalog_path)
+    temp = []
+    i = 0
+    for file in file_list:
+        img = Image.open(file).resize((128, 128))
+        temp.append(asarray(img))
+        print(f"loaded {i}/{len(file_list)}: {file}")
+        i = i + 1
+    x = array(temp)
+    return x
+
+
 def load_real_samples(real_ones):
     if real_ones:
         train_x = to_load()
@@ -141,10 +154,10 @@ def train(d_loss_real_hist, d_loss_fake_hist, g_loss_hist, g_model, d_model, gan
             g_loss_hist.append(g_loss)
             print('>%d, %d/%d, d1=%.3f, d2=%.3f g=%.3f' %
                   (i + 1, j + 1, batch_per_epoch, d_loss1, d_loss2, g_loss))
-        if (i + 1) % 10 == 0:
+        if (i + 1) % 30 == 0:
             summarize_performance(i, g_model, d_model, dataset, latent_dim)
-        x_fakes, _ = generate_fake_samples(g_model, latent_dim, 150)
-        save_plot(x_fakes, i)
+        #x_fakes, _ = generate_fake_samples(g_model, latent_dim, 150)
+        #save_plot(x_fakes, i)
 
 
 def create_gif(filename):
