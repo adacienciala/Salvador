@@ -77,6 +77,11 @@ def load_from_path(catalog_path: str):
     i = 0
     for file in file_list:
         img = Image.open(file).resize((128, 128))
+        res = asarray(img).shape
+        print(asarray(img).shape)
+        if res != (128, 128, 3):
+            print(file)
+            break
         temp.append(asarray(img))
         print(f"loaded {i}/{len(file_list)}: {file}")
         i = i + 1

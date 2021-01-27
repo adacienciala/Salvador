@@ -39,7 +39,6 @@ print('Model trained')
 # create_gif('landscapes')
 # remove_plots()
 # remove_models()
-
 # from salvador import generate_from_model
 
 # generate_from_model('models/generator_model_009.h5', n_images=20)
