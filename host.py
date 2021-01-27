@@ -22,7 +22,7 @@ def download_file(user_id, filename):
 @app.route('/generate')
 def generate_images():
     user_id = uuid.uuid4().hex
-    generate_from_model('models/generator_model_299.h5', dst_catalog=user_id, n_images=1)
+    generate_from_model('models/generator_model_649.h5', dst_catalog=user_id, n_images=1)
     gc.collect()
     return user_id
 
