@@ -62,7 +62,6 @@ p {
 .tech-slideshow .mover {
     display: flex;
     justify-content: center;
-    column-gap: 10px;
     height: var(--img-size);
 }
 
@@ -70,6 +69,7 @@ p {
     height: var(--img-size);
     width: var(--img-size);
     box-shadow: 0 4px 6px #000;
+    margin: 0 10px 0 0;
 }
 
 #mover-left {
