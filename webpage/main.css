@@ -154,6 +154,10 @@ p {
     transform: translate(-50%, -50%);
     animation: growAndShrink 2500ms;
     animation-fill-mode: forwards;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .loading {
@@ -161,11 +165,8 @@ p {
     height: 10%;
 }
 
-.image-editor img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.image-editor p {
+    margin-top: 10px;
 }
 
 @keyframes growAndShrink {

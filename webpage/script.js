@@ -32,7 +32,15 @@ function load_welcome_button() {
     load_image_editor();
 }
 
+function run_timer() {
+    if (!document.getElementById('image').src.includes('.gif')) return;
+    let s = Math.round(performance.now() / 1000)
+    $('#estimated-time-counter').text(`Estimated time: ~23s. Elapsed time: ${s} s.`)
+    setTimeout(run_timer, 1000)
+}
+
 function load_image() {
+    run_timer();
     $('.image-editor').on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function () {
         $.get('https://pomodoro-salvadoro.herokuapp.com/generate', function (response) {
             let fileSrc = 'https://pomodoro-salvadoro.herokuapp.com/generated/' + response + '/image0000.png';
