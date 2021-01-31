@@ -1,68 +1,91 @@
 $(document).ready(function(){
+    hide_main_content();
+    load_welcome_button();
+    load_image();
+    load_sliders()
+});
+
+function hide_main_content() {
     $('.tech-slideshow').hide();
     $('.generate-button').hide();
     $('.image-editor').hide();
-    $('#logodiv').click(function(){
+}
+
+function load_welcome_button() {
+
+    function show_welcome_button() {
+        $('#logodiv').click(function(){
         $('#logodiv').fadeTo('slow', 0.3);
         $('.tech-slideshow').show('slow');
         $('.generate-button').fadeIn('slow');
-    });
+        });
+    }
 
-    $('#button, #button-icon').click(function(){
-        $('.generate-button').fadeOut();
+    function load_image_editor() {
+        $('#button, #button-icon').click(function(){
         $('.generate-button').remove();
-        
         $('.image-editor').fadeIn();
-        
-    });
+        });
+    }
 
-    $('.image-editor').on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function (e) {
+    show_welcome_button();
+    load_image_editor();
+}
+
+function load_image() {
+    $('.image-editor').on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function () {
         $.get('https://pomodoro-salvadoro.herokuapp.com/generate', function (response) {
             let fileSrc = 'https://pomodoro-salvadoro.herokuapp.com/generated/' + response + '/image0000.png';
             let image = $("#image");
             image.fadeOut('fast', function () {
-            image.attr('src', fileSrc);
-            image.css({
-                "box-shadow": "0 4px 6px #000",
-                "height": "50%",
-                "width": "50%"
-            });
-            image.fadeIn('fast');
+                image.attr('src', fileSrc);
+                image.css({
+                    "box-shadow": "0 4px 6px #000",
+                    "height": "50%",
+                    "width": "50%"
+                });
+                image.fadeIn('fast');
             });
         })
     })
+}
 
-    // TODO: slider dlugiej szerokosci i na koncu powtorzenie pierwszych
+function load_sliders() {
+    let $moverL = $('#mover-left');
+    let $moverR = $('#mover-right');
 
-    var dir = "images/generated_images/";
-    $moverL = $('#mover-left');
-    $moverR = $('#mover-right');
-    $.get('https://pomodoro-salvadoro.herokuapp.com/slider_images', function (response) {
-        var fileList = []
-        try {
-            fileList = JSON.parse(response)
-        } catch (e) { console.log('Errorek', e)}
+    function prepare_sliders() {
+        const dir = "images/generated_images/";
+        $.get('https://pomodoro-salvadoro.herokuapp.com/slider_images', function (response) {
+            let fileList = []
+            try {
+                fileList = JSON.parse(response)
+            } catch (e) { console.log('Errorek', e)}
 
-        fileList.forEach(function (filename, i) {
-            if (i < fileList.length/2) {
-                $moverL.append("<img src='" + dir + filename + "'>");
-            } else if (i < fileList.length) {
-                $moverR.append("<img src='" + dir + filename + "'>");
-            } else {
-                return false;
-            }
-        });
-    })
+            fileList.forEach(function (filename, i) {
+                if (i < fileList.length / 2) {
+                    $moverL.append("<img src='" + dir + filename + "' alt='AI generated background image'>");
+                } else if (i < fileList.length) {
+                    $moverR.append("<img src='" + dir + filename + "' alt='AI generated background image'>");
+                } else {
+                    return false;
+                }
+            });
+        })
+    }
 
-    $moverL.on('webkitAnimationIteration oanimationiteration msAnimationIteration animationiteration', function (e) {
-        var overflowedImg = $moverL.children(":first");
-        overflowedImg.appendTo($moverL);
-    })
+    function run_sliders() {
+        $moverL.on('webkitAnimationIteration oanimationiteration msAnimationIteration animationiteration', function (e) {
+            let overflowedImg = $moverL.children(":first");
+            overflowedImg.appendTo($moverL);
+        })
 
-    $moverR.on('webkitAnimationIteration oanimationiteration msAnimationIteration animationiteration', function (e) {
-        var overflowedImg = $moverR.children(":last");
-        overflowedImg.prependTo($moverR);
-    })
+        $moverR.on('webkitAnimationIteration oanimationiteration msAnimationIteration animationiteration', function (e) {
+            let overflowedImg = $moverR.children(":last");
+            overflowedImg.prependTo($moverR);
+        })
+    }
 
-
-});
+    prepare_sliders();
+    run_sliders();
+}
