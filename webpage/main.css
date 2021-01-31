@@ -29,7 +29,7 @@ html {
 
 body {
     height: 100%;
-    position: relative;
+    position: inherit;
     background: linear-gradient(180deg, #000B32 0%, #003952 100%);
     overflow: hidden;
 }
@@ -166,7 +166,9 @@ p {
 }
 
 .image-editor p {
-    margin-top: 10px;
+    margin-top: 20px;
+    font-family: "Poor Richard", serif;
+    font-size: 1.5em;
 }
 
 @keyframes growAndShrink {

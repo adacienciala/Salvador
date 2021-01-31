@@ -1,3 +1,5 @@
+let maxGeneratingTime = 23
+
 $(document).ready(function(){
     hide_main_content();
     load_welcome_button();
@@ -32,14 +34,21 @@ function load_welcome_button() {
     load_image_editor();
 }
 
-function run_timer() {
-    if (!document.getElementById('image').src.includes('.gif')) return;
-    let s = Math.round(performance.now() / 1000)
-    $('#estimated-time-counter').text(`Estimated time: ~23s. Elapsed time: ${s} s.`)
-    setTimeout(run_timer, 1000)
-}
-
 function load_image() {
+    function run_timer() {
+        if (!document.getElementById('image').src.includes('.gif')) return;
+        let sec = Math.round(performance.now() / 1000)
+        const text = `Estimated time: ~${maxGeneratingTime}s. Elapsed time: ${sec} s.`;
+        if (sec === maxGeneratingTime) {
+            const refreshP = document.createElement("p")
+            const text = document.createTextNode('Request might failed, consider refreshing. ☹️')
+            refreshP.appendChild(text)
+            document.getElementById('image-editor').appendChild(refreshP);
+        }
+        $('#estimated-time-counter').text(text)
+        setTimeout(run_timer, 1000)
+    }
+
     run_timer();
     $('.image-editor').on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function () {
         $.get('https://pomodoro-salvadoro.herokuapp.com/generate', function (response) {
