@@ -1,4 +1,4 @@
-let maxGeneratingTime = 23
+let maxGeneratingTime = 30
 
 $(document).ready(function(){
     hide_main_content();
@@ -35,22 +35,26 @@ function load_welcome_button() {
 }
 
 function load_image() {
-    function run_timer() {
-        if (!document.getElementById('image').src.includes('.gif')) return;
-        let sec = Math.round(performance.now() / 1000)
-        const text = `Estimated time: ~${maxGeneratingTime}s. Elapsed time: ${sec} s.`;
-        if (sec === maxGeneratingTime) {
-            const refreshP = document.createElement("p")
-            const text = document.createTextNode('Request might failed, consider refreshing. ☹️')
-            refreshP.appendChild(text)
-            document.getElementById('image-editor').appendChild(refreshP);
-        }
-        $('#estimated-time-counter').text(text)
-        setTimeout(run_timer, 1000)
-    }
 
-    run_timer();
     $('.image-editor').on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function () {
+        
+        function run_timer() {
+            if (!document.getElementById('image').src.includes('.gif')) return;
+            if (typeof sec == 'undefined')
+                sec = 0
+            else sec++
+            const text = `Estimated time: ~${maxGeneratingTime}s. Elapsed time: ${sec} s.`;
+            if (sec === maxGeneratingTime) {
+                const refreshP = document.createElement("p")
+                const text = document.createTextNode('Request might have failed, consider refreshing. ☹️')
+                refreshP.appendChild(text)
+                document.getElementById('image-editor').appendChild(refreshP);
+            }
+            $('#estimated-time-counter').text(text)
+            setTimeout(run_timer, 1000)
+        }
+        
+        run_timer();
         $.get('https://pomodoro-salvadoro.herokuapp.com/generate', function (response) {
             let fileSrc = 'https://pomodoro-salvadoro.herokuapp.com/generated/' + response + '/image0000.png';
             let image = $("#image");
