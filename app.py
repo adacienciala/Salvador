@@ -18,7 +18,7 @@ def hello():
 
 @app.route('/generated/<user_id>/<path:filename>')
 def download_file(user_id, filename):
-    return send_from_directory(f'{user_id}/', filename, as_attachment=True)
+    return send_from_directory(f'{user_id}/', filename, as_attachment=False)
 
 @app.route('/generate')
 def generate_images():
