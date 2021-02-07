@@ -67,9 +67,9 @@ function load_image() {
                 });
                 image.fadeIn('fast');
             });
+            load_download_btn();
         })
-
-        load_download_btn();
+        
     })
 }
 
@@ -78,8 +78,6 @@ function load_download_btn() {
     $('#download-btn').click(function(){
         var link = document.createElement('a');
         link.href = $("#image").attr('src');
-        console.log(link.href);
-        link.download = 'generated.png';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
