@@ -7,6 +7,7 @@ from flask import Flask, send_from_directory
 from salvador import generate_from_model
 from flask_cors import CORS
 
+print("debug mess")
 app = Flask(__name__)
 CORS(app)
 port = int(os.environ.get("PORT", 5000))
