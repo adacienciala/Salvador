@@ -17,16 +17,16 @@ function load_welcome_button() {
 
     function show_welcome_button() {
         $('#logodiv').click(function(){
-        $('#logodiv').fadeTo('slow', 0.3);
-        $('.tech-slideshow').show('slow');
-        $('.generate-button').fadeIn('slow');
+            $('#logodiv').fadeTo('slow', 0.3);
+            $('.tech-slideshow').show('slow');
+            $('.generate-button').fadeIn('slow');
         });
     }
 
     function load_image_editor() {
         $('#button, #button-icon').click(function(){
-        $('.generate-button').remove();
-        $('.image-editor').fadeIn();
+            $('.generate-button').remove();
+            $('.image-editor').fadeIn();
         });
     }
 
@@ -68,7 +68,22 @@ function load_image() {
                 image.fadeIn('fast');
             });
         })
+
+        load_download_btn();
     })
+}
+
+function load_download_btn() {
+    $('#image-editor').append("<div id='download-btn' alt='download button'>");
+    $('#download-btn').click(function(){
+        var link = document.createElement('a');
+        link.href = $("#image").attr('src');
+        console.log(link.href);
+        link.download = 'generated.png';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
 }
 
 function load_sliders() {

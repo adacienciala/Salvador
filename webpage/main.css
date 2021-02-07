@@ -186,6 +186,19 @@ p {
     }
 }
 
+#download-btn {
+    width: 10%;
+    height: 10%;
+    background-image: url(images/download.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#download-btn:hover {
+    filter: brightness(75%);
+    cursor: pointer;
+}
+
 /* TODO make everything (lol) scalable */
 
 @media only screen and (max-width: 280px) {
