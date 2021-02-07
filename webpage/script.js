@@ -67,18 +67,17 @@ function load_image() {
                 });
                 image.fadeIn('fast');
             });
-            load_download_btn();
+            load_download_btn(response);
         })
 
     })
 }
 
-function load_download_btn() {
+function load_download_btn(user_id) {
     $('#image-editor').append("<div id='download-btn' alt='download button'>");
     $('#download-btn').click(function(){
         var link = document.createElement('a');
-        link.href = $("#image").attr('src');
-        link.download = "image0000.png";
+        link.href = 'https://pomodoro-salvadoro.herokuapp.com/generated/' + user_id + '/download-image0000.png';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

@@ -7,7 +7,6 @@ from flask import Flask, send_from_directory
 from salvador import generate_from_model
 from flask_cors import CORS
 
-print("debug mess")
 app = Flask(__name__)
 CORS(app)
 port = int(os.environ.get("PORT", 5000))
@@ -19,6 +18,10 @@ def hello():
 @app.route('/generated/<user_id>/<path:filename>')
 def download_file(user_id, filename):
     return send_from_directory(f'{user_id}/', filename, as_attachment=False)
+
+@app.route('/generated/<user_id>/download-<path:filename>')
+def download_file(user_id, filename):
+    return send_from_directory(f'{user_id}/', filename, as_attachment=True)
 
 @app.route('/generate')
 def generate_images():
