@@ -16,7 +16,7 @@ def hello():
     return '<meta http-equiv="refresh" content="0; URL=https://adacienciala.github.io/Salvador/webpage/index.html" />'
 
 @app.route('/generated/<user_id>/<path:filename>')
-def download_file(user_id, filename):
+def display_file(user_id, filename):
     return send_from_directory(f'{user_id}/', filename, as_attachment=False)
 
 @app.route('/generated/<user_id>/download-<path:filename>')
