@@ -78,7 +78,7 @@ function load_download_btn() {
     $('#download-btn').click(function(){
         var link = document.createElement('a');
         link.href = $("#image").attr('src');
-        link.download = "image0000.png"
+        link.download = "image0000.png";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
