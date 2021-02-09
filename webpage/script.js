@@ -64,7 +64,7 @@ function load_image() {
                     "box-shadow": "0 4px 6px #000",
                     "height": "50%",
                     "width": "50%",
-                    "margin-top: 80px;"
+                    "margin-top": "80px"
                 });
                 image.fadeIn('fast');
             });
