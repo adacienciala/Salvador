@@ -60,12 +60,7 @@ function load_image() {
             let image = $("#image");
             image.fadeOut('fast', function () {
                 image.attr('src', fileSrc);
-                image.css({
-                    "box-shadow": "0 4px 6px #000",
-                    "height": "50%",
-                    "width": "50%",
-                    "margin-top": "80px"
-                });
+                image.attr('class', 'generated-img')
                 image.fadeIn('fast');
             });
             load_download_btn(response);

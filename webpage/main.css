@@ -39,12 +39,16 @@ p {
 }
 
 #logodiv {
-    min-width: 200px;
+    min-width: 300px;
     position: absolute;
     top: 50%;
     left: 50%;
     height: auto;
     transform: translate(-50%, -50%);
+}
+
+#logo {
+    width: 100%;
 }
 
 .tech-slideshow {
@@ -57,17 +61,17 @@ p {
     justify-content: space-around;
     height: 500px;
     width: 100%;
+    transition: all 1000ms;
 }
 
 .tech-slideshow .mover {
     display: flex;
     justify-content: center;
-    height: var(--img-size);
+    max-height: var(--img-size);
 }
 
 .tech-slideshow img {
-    height: var(--img-size);
-    width: var(--img-size);
+    height: 100%;
     box-shadow: 0 4px 6px #000;
     margin: 0 10px 0 0;
 }
@@ -147,6 +151,7 @@ p {
     width: 100%;
     height: 100%;
     background-size: contain;
+    background-position: center center;
     background-repeat: no-repeat;
     position: relative;
     top: 50%;
@@ -161,28 +166,39 @@ p {
 }
 
 .loading {
+    max-width: 60px;
     width: 10%;
-    height: 10%;
 }
 
+.generated-img {
+    box-shadow: 0 4px 6px #000;
+    width: 45%;
+    max-width: 300px;
+    margin-top: 10%;
+    transition: all 1000ms;
+}
+
+
 .image-editor p {
+    width: 70%;
     margin-top: 20px;
     font-family: "Poor Richard", serif;
     font-size: 1.5em;
+    transition: all 1000ms;
 }
 
 @keyframes growAndShrink {
     0% {
-        width: 250px;
-        height: 250px;
+        width: 25%;
+        height: 25%;
     }
     50% { 
-        width: 100vh;
-        height: 100vh;
+        width: 100%;
+        height: 100%;
     }
     100% { 
-        width: 700px;
-        height: 700px;
+        width: 70%;
+        height: 70%;
     }
 }
 
@@ -199,17 +215,37 @@ p {
     cursor: pointer;
 }
 
-/* TODO make everything (lol) scalable */
+@media only screen and (max-width: 650px) {
 
-@media only screen and (max-width: 280px) {
+    .tech-slideshow {
+        height: 300px;
+    }
 
-    body,
-    p {
-        width: 95%;
+    .tech-slideshow .mover {
+        max-height: 80px;
+    }
+
+    .image-editor {
+        min-width: 270px;
+    }
+
+    .generated-img {
+        width: 35%;
+        margin-top: 10%;
+        transition: all 1000ms;
+    }
+
+    .image-editor p {
+        font-size: 1em;
+    }
+
+    .generate-button {
+        width: 125px;
+        height: 125px;
     }
 
     h1 {
-     font-size: 1.5em;
-     margin: 0 0 0.3em;
+        font-size: 1.5em;
+        margin: 0 0 0.3em;
     }
 }
