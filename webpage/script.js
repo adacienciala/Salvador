@@ -48,7 +48,8 @@ function load_image() {
                 const refreshP = document.createElement("p")
                 const text = document.createTextNode('Request might have failed, consider refreshing. ☹️')
                 refreshP.appendChild(text)
-                document.getElementById('image-editor').appendChild(refreshP);
+                refreshP.attr('id', 'error')
+                document.getElementById('image-editor').appendChild(refreshP)
             }
             $('#estimated-time-counter').text(text)
             setTimeout(run_timer, 1000)
@@ -62,6 +63,7 @@ function load_image() {
                 image.attr('src', fileSrc);
                 image.attr('class', 'generated-img')
                 image.fadeIn('fast');
+                $("#error").remove();
             });
             load_download_btn(response);
         })

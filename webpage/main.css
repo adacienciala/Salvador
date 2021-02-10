@@ -112,6 +112,7 @@ p {
     transform: translate(-50%, -50%);
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center center;
 }
 
 #button-icon {
@@ -122,6 +123,7 @@ p {
     left: 50%;
     transform: translate(-50%, -50%);
     background-image: url(images/finger.png);
+    background-position: center center;
     background-size: contain;
     background-repeat: no-repeat;
     transition: all 500ms;
@@ -174,17 +176,21 @@ p {
     box-shadow: 0 4px 6px #000;
     width: 45%;
     max-width: 300px;
-    margin-top: 10%;
+    margin-top: 80px;
     transition: all 1000ms;
 }
 
 
 .image-editor p {
-    width: 70%;
+    width: 50%;
     margin-top: 20px;
     font-family: "Poor Richard", serif;
     font-size: 1.5em;
     transition: all 1000ms;
+}
+
+.image-editor #error {
+    width: 35%;
 }
 
 @keyframes growAndShrink {
@@ -206,6 +212,7 @@ p {
     width: 10%;
     height: 10%;
     background-image: url(images/download.png);
+    background-position: center center;
     background-size: contain;
     background-repeat: no-repeat;
 }
