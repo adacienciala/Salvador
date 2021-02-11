@@ -175,7 +175,7 @@ p {
 .generated-img {
     box-shadow: 0 4px 6px #000;
     width: 45%;
-    max-width: 300px;
+    max-width: 250px;
     margin-top: 80px;
     transition: all 1000ms;
 }
