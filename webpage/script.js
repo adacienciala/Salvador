@@ -48,7 +48,7 @@ function load_image() {
                 const refreshP = document.createElement("p")
                 const text = document.createTextNode('Request might have failed, consider refreshing. ☹️')
                 refreshP.appendChild(text)
-                refreshP.attr('id', 'error')
+                refreshP.setAttribute('id', 'error')
                 document.getElementById('image-editor').appendChild(refreshP)
             }
             $('#estimated-time-counter').text(text)
